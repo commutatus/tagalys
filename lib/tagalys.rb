@@ -4,10 +4,13 @@ class Tagalys
     require 'uri'
     require 'json'
 
-    def search(query)
+    def search(query=nil, filters=nil)
+      return { status: "Either query or filter should be present" } if query == nil && filters == nil
+      return { status: "Filter should be a hash" } if filters && filters.class != Hash
       request_body = {
         identification: identification,
-        q: query,
+        q: query.strip.length > 0 ? query : nil,
+        qf: filters,
       	request: [
           "total",
           "results",
@@ -15,7 +18,7 @@ class Tagalys
           "sort_options",
           "filters"
         ]
-      }
+      }.compact
       search_response = request_tagalys('/search', request_body)
     end
 
