@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "This gem follows v1 of the Tagalys API endpoint."
   s.authors     = ["Anbazhagan Palani"]
   s.email       = 'anbu@commutatus.com'
-  s.files       = ["lib/tagalys.rb"]
+  s.files       = ["lib/tagalys.rb", "lib/tagalys/configuration.rb"]
   s.homepage    =
     'https://github.com/commutatus/tagalys'
   s.license       = 'MIT'

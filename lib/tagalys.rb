@@ -1,8 +1,23 @@
-class Tagalys
+require 'tagalys/configuration'
+
+module Tagalys
   class << self
+    attr_accessor :configuration
     require 'net/http'
     require 'uri'
     require 'json'
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def reset
+      @configuration = Configuration.new
+    end
+
+    def configure
+      yield(configuration)
+    end
 
     def search(query=nil, filters=nil)
       return { status: "Either query or filter should be present" } if query == nil && filters == nil
@@ -68,9 +83,9 @@ class Tagalys
 
     def identification
       {
-        client_code: "ED8FFD720193B471",
-        store_id: "1",
-        api_key: "3a257e305b32e7b4fa70b5e999730d5a"
+        client_code: configuration.client_code,
+        store_id: configuration.store_id,
+        api_key: configuration.api_key
       }
     end
 
