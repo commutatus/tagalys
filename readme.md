@@ -3,7 +3,14 @@ First install the tagalys gem into the application.
 ```
 gem 'tagalys'
 ```
-
+Create a configuration file like `config/initializers/tagalys.rb` and paste the following and replace the credentials
+```
+Tagalys.configure do |config|
+  config.client_code = "xxxxxxxxxxx"
+  config.store_id = "yyyyyyyyyyy"
+  config.api_key = "zzzzzzzzzzzzzz"
+end
+```
 ### Step 1
 First step is to create the store in tagalys. If store is already created ignore this step.
 ```
