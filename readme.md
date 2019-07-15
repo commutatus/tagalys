@@ -88,3 +88,84 @@ We can also search with tag set. For that we have to send the second parameter i
 ```
 Tagalys.search("gold", {product_type: [162]})
 ```
+
+### Step 4
+To get list of pages from tagalys.
+```
+Tagalys.get_page_list
+
+
+{
+  "status": "OK",
+  "total": 1,
+  "results": [
+    {
+      "name": "Necklaces",
+      "url_component": "necklace",
+      "variables": {
+          "page_title": "Buy Gold and Diamond Necklace Set for Women Online in Chennai, India | Gehna...",
+          "description": "Buy Gold and Diamond Necklace Set",
+          "meta_keywords": "",
+          "meta_description": "Buy Gold and Diamond Necklace Set..."
+      },
+      "platform": false,
+      "total": 31
+    }
+  ]
+}
+```
+
+### Step 5
+To get details of particular page from tagalys.
+```
+Tagalys.get_page_details(page_name)
+
+
+{
+  "status": "OK",
+  "total": 1,
+  "name": "Necklaces",
+  "sort_options": [
+    {
+      "id": "trending",
+      "label": "Trending",
+      "selected": true
+    },
+    ...
+  ],
+  "total": 31,
+  "filters": [
+    {
+      "id": "price",
+      "name": "Price",
+      "type": "range",
+      "currency": true,
+      "min": 31700,
+      "max": 796040
+    },
+    ...
+  ],
+  "results": [
+    "1830",
+    "1831"
+  ],
+  "details": [
+    {
+      "__id": "1830",
+      "name": "Resplendent Diamond Necklace",
+      "sku": "GHDINE-2289 ",
+      "link": "http://stage.gehnaindia.com/resplendent-diamond-necklace.html",
+      "image_url": "https://stage.gehnaindia.com/media/tagalys/product_thumbnails/r/e/resplendent_diamond_necklace.png",
+      "price": 278200,
+      "sale_price": 278200,
+      "in_stock": true,
+      "shippingfast": [
+        "No"
+      ],
+      "show_out_of_stocks": [
+        "No"
+      ]
+    },
+  ]
+}
+```

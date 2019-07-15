@@ -51,6 +51,14 @@ module Tagalys
       search_response = request_tagalys('/mpages/' + page_name, request_body)
     end
 
+    def get_page_list
+      request_body = {
+        identification: identification,
+      	request: ["url_component", "variables"]
+      }.compact
+      search_response = request_tagalys('/mpages/', request_body)
+    end
+
     def create_store(currencies, fields, tag_sets, sort_options)
       request_body = {
         identification: identification,
