@@ -89,6 +89,12 @@ We can also search with tag set. For that we have to send the second parameter i
 Tagalys.search("gold", {product_type: [162]})
 ```
 
+We can also pass in pagination values as third and fourth params
+```
+Tagalys.search("gold", {product_type: [162]}, 3, 25)
+# 3 => Page number
+# 25 => per_page count
+```
 ### Step 4
 To get list of pages from tagalys.
 ```
@@ -113,6 +119,11 @@ Tagalys.get_page_list
     }
   ]
 }
+```
+
+By default it fetches 30 list from page 1, we can pass pagination params here as well.
+```
+Tagalys.get_page_list(2, 30)
 ```
 
 ### Step 5
