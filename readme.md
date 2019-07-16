@@ -179,4 +179,6 @@ Tagalys.get_page_details(page_name)
     },
   ]
 }
+
+Tagalys.get_page_details(page_name, page, per_page)
 ```

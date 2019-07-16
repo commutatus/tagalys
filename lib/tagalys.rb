@@ -39,7 +39,7 @@ module Tagalys
       search_response = request_tagalys('/search', request_body)
     end
 
-    def get_page_details(page_name)
+    def get_page_details(page_name, page=1, per_page=30)
       request_body = {
         identification: identification,
       	request: [
@@ -48,7 +48,9 @@ module Tagalys
           "details",
           "sort_options",
           "filters"
-        ]
+        ],
+        page: page,
+        per_page: per_page
       }.compact
       search_response = request_tagalys('/mpages/' + page_name, request_body)
     end
