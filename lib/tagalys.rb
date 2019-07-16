@@ -19,13 +19,15 @@ module Tagalys
       yield(configuration)
     end
 
-    def search(query=nil, filters=nil)
+    def search(query=nil, filters=nil, page=1, per_page=30)
       return { status: "Either query or filter should be present" } if query == nil && filters == nil
       return { status: "Filter should be a hash" } if filters && filters.class != Hash
       request_body = {
         identification: identification,
         q: query.strip.length > 0 ? query : nil,
         qf: filters,
+        page: page,
+        per_page: per_page,
       	request: [
           "total",
           "results",
@@ -37,7 +39,7 @@ module Tagalys
       search_response = request_tagalys('/search', request_body)
     end
 
-    def get_page_details(page_name)
+    def get_page_details(page_name, page=1, per_page=30)
       request_body = {
         identification: identification,
       	request: [
@@ -46,15 +48,19 @@ module Tagalys
           "details",
           "sort_options",
           "filters"
-        ]
+        ],
+        page: page,
+        per_page: per_page
       }.compact
       search_response = request_tagalys('/mpages/' + page_name, request_body)
     end
 
-    def get_page_list
+    def get_page_list(page=1, per_page=30)
       request_body = {
         identification: identification,
-      	request: ["url_component", "variables"]
+      	request: ["url_component", "variables"],
+        page: page,
+        per_page: per_page
       }.compact
       search_response = request_tagalys('/mpages/', request_body)
     end
