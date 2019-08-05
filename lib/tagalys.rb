@@ -21,7 +21,7 @@ module Tagalys
 
     def search(query=nil, filters=nil, page=1, per_page=30)
       return { status: "Either query or filter should be present" } if query == nil && filters == nil
-      return { status: "Filter should be a hash" } if filters && filters.class != Hash
+      # return { status: "Filter should be a hash" } if filters && filters.class != Hash
       request_body = {
         identification: identification,
         q: query.strip.length > 0 ? query : nil,
