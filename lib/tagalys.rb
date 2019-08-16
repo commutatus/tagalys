@@ -34,25 +34,30 @@ module Tagalys
           "results",
           "details",
           "sort_options",
-          "filters"
+          "filters",
+          "variables",
+          "banners"
         ]
       }.compact
       search_response = request_tagalys('/search', request_body)
     end
 
-    def get_page_details(page_name, sort=nil, page=1, per_page=30)
+    def get_page_details(page_name, filters=nil, sort=nil, page=1, per_page=30)
       request_body = {
         identification: identification,
         sort: sort,
+        f: filters,
+        page: page,
+        per_page: per_page,
       	request: [
           "total",
           "results",
           "details",
           "sort_options",
-          "filters"
-        ],
-        page: page,
-        per_page: per_page
+          "filters",
+          "variables",
+          "banners"
+        ]
       }.compact
       search_response = request_tagalys('/mpages/' + page_name, request_body)
     end
