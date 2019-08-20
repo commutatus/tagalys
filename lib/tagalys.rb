@@ -19,7 +19,7 @@ module Tagalys
       yield(configuration)
     end
 
-    def search(query=nil, filters=nil, sort=nil, page=1, per_page=30)
+    def search(query = nil, filters = nil, sort = nil, page = 1, per_page = 30)
       return { status: "Either query or filter should be present" } if query == nil && filters == nil
       # return { status: "Filter should be a hash" } if filters && filters.class != Hash
       request_body = {
@@ -30,19 +30,19 @@ module Tagalys
         page: page,
         per_page: per_page,
       	request: [
-          "total",
-          "results",
+          "banners",
           "details",
-          "sort_options",
           "filters",
-          "variables",
-          "banners"
+          "results",
+          "sort_options",
+          "total",
+          "variables"
         ]
       }.compact
       search_response = request_tagalys('/search', request_body)
     end
 
-    def get_page_details(page_name, filters=nil, sort=nil, page=1, per_page=30)
+    def get_page_details(page_name, filters = nil, sort = nil, page = 1, per_page = 30)
       request_body = {
         identification: identification,
         sort: sort,
@@ -50,19 +50,19 @@ module Tagalys
         page: page,
         per_page: per_page,
       	request: [
-          "total",
-          "results",
+          "banners",
           "details",
-          "sort_options",
           "filters",
-          "variables",
-          "banners"
+          "results",
+          "sort_options",
+          "total",
+          "variables"
         ]
       }.compact
       search_response = request_tagalys('/mpages/' + page_name, request_body)
     end
 
-    def get_page_list(page=1, per_page=30)
+    def get_page_list(page = 1, per_page = 30)
       request_body = {
         identification: identification,
       	request: ["url_component", "variables"],
@@ -70,6 +70,18 @@ module Tagalys
         per_page: per_page
       }.compact
       search_response = request_tagalys('/mpages/', request_body)
+    end
+
+    def get_similar_products(product_id)
+      request_body = {
+        identification: identification,
+        max_products: 16,
+      	request: [
+          "details",
+          "results"
+        ]
+      }.compact
+      search_response = request_tagalys("/products/#{product_id}/similar", request_body)
     end
 
     def create_store(currencies, fields, tag_sets, sort_options)
