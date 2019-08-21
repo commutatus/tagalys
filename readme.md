@@ -91,7 +91,8 @@ Tagalys.search("gold", {product_type: [162]})
 
 We can also pass in pagination values as third and fourth params
 ```
-Tagalys.search("gold", {product_type: [162]}, 3, 25)
+# Tagalys.search(search_query, filters, sort, page_number, per_page)
+Tagalys.search("gold", {product_type: [162]}, "sale_price-asc", 3, 25)
 # 3 => Page number
 # 25 => per_page count
 ```
@@ -129,7 +130,8 @@ Tagalys.get_page_list(2, 30)
 ### Step 5
 To get details of particular page from tagalys.
 ```
-Tagalys.get_page_details(page_name)
+# Tagalys.search(page_name, filters, sort, page_number, per_page)
+Tagalys.get_page_details(page_name, {price: {selected_min: "4000", selected_max: "1000"}})
 
 
 {
@@ -179,6 +181,4 @@ Tagalys.get_page_details(page_name)
     },
   ]
 }
-
-Tagalys.get_page_details(page_name, page, per_page)
 ```
