@@ -114,6 +114,16 @@ module Tagalys
       create_response = request_tagalys('/products/sync_updates', request_body)
     end
 
+    def full_product_sync(link, product_count, callback_url = nil)
+      request_body = {
+        identification: identification,
+      	link: link,
+      	updates_count: product_count,
+        callback_url: callback_url
+      }
+      create_response = request_tagalys('/products/sync_updates', request_body)
+    end
+
     def request_tagalys(path, request_body)
       uri = URI.parse("https://api-r1.tagalys.com/v1/" + path)
       header = {'Content-Type': 'application/json'}
