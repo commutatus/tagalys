@@ -42,6 +42,18 @@ module Tagalys
       search_response = request_tagalys('/search', request_body)
     end
 
+    def surface_search(query = nil, query_count = 8, product_count = 3)
+      return { status: "Either query or filter should be present" } if query == nil
+      # return { status: "Filter should be a hash" } if filters && filters.class != Hash
+      request_body = {
+        identification: identification,
+        q: query.strip.length > 0 ? query : nil,
+        queries: query_count,
+        products: product_count,
+      }.compact
+      search_response = request_tagalys('/ss', request_body)
+    end
+
     def get_page_details(page_name, filters = nil, sort = nil, page = 1, per_page = 30)
       request_body = {
         identification: identification,
@@ -116,14 +128,13 @@ module Tagalys
     end
 
     def request_tagalys(path, request_body)
-      uri = URI.parse("https://api-r1.tagalys.com/v1/" + path)
+      uri = URI.parse("https://api-r1.tagalys.com/v1" + path)
       header = {'Content-Type': 'application/json'}
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri, header)
       puts request_body.to_json
       request.body = request_body.to_json
-
       # Send the request
       response = http.request(request)
       return JSON.parse(response.body)

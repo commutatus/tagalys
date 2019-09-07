@@ -1,4 +1,4 @@
-# Setup
+# Tagalys Setup
 First install the tagalys gem into the application.
 ```
 gem 'tagalys'
@@ -182,3 +182,72 @@ Tagalys.get_page_details(page_name, {price: {selected_min: "4000", selected_max:
   ]
 }
 ```
+
+### Step 6
+This is for search input box, Dropdown data population
+
+```
+Tagalys.surface_search(query, query_count, product_count)
+Tagalys.surface_search('ge', 4, 4)
+
+{
+  "status": "OK",
+  "queries": [
+    {
+      "query": [
+        "Explore",
+        "Jewelry By Gemstones",
+        "Diamond Jewelry"
+      ],
+      "filter": {
+        "__categories": [
+          "117"
+        ]
+      },
+      "in": {
+        "tag_set": {
+          "id": "jewellerytype",
+          "name": "Jewellery Type"
+        },
+        "hierarchy": [
+          {
+            "id": "551",
+            "name": "Earrings"
+          }
+        ]
+      }
+    },
+    ....
+  ],
+  ],
+  "products": [
+    {
+      "__id": "1756",
+      "name": "Peerless Gold and Pearl Filigree Earrings",
+      "sku": "GHCSER-1831",
+      "link": "https://www.gehnaindia.com/peerless-gold-and-pearl-filigree-earrings.html",
+      "image_url": "https://cdn.gehnaindia.com/media/tagalys/product_thumbnails/P/e/Peerless_Gold_and_Pearl_Filigree_Earrings-1.jpg",
+      "price": 12220.0,
+      "sale_price": 12220.0,
+      "introduced_at": "20181103T193945.000+0000",
+      "in_stock": true,
+      "shippingfast": [
+        "No"
+      ],
+      "show_out_of_stocks": [
+        "No"
+      ],
+      "_id": "1756"
+    },
+    ....
+  ]
+}
+```
+
+### Tagalys Documentation reference
+
+The Gem is built based on the following documentation provided by tagalys.
+
+[Frontend Integration] (https://www.tagalys.com/docs/api/front-end/#tagalys-front-end-api)
+
+[Custom Integration ] (https://www.tagalys.com/docs/api/custom-integration/#overview)
