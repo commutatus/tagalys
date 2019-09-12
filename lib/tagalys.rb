@@ -96,6 +96,30 @@ module Tagalys
       search_response = request_tagalys("/products/#{product_id}/similar", request_body)
     end
 
+    def get_best_selling_products
+      request_body = {
+        identification: identification,
+        max_products: 16,
+      	request: [
+          "details",
+          "results"
+        ]
+      }.compact
+      search_response = request_tagalys("/recommendations/bestsellers", request_body)
+    end
+
+    def get_new_arrivals
+      request_body = {
+        identification: identification,
+        max_products: 16,
+      	request: [
+          "details",
+          "results"
+        ]
+      }.compact
+      search_response = request_tagalys("/recommendations/new_arrivals", request_body)
+    end
+
     def create_store(currencies, fields, tag_sets, sort_options)
       request_body = {
         identification: identification,
