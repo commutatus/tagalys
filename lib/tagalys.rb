@@ -141,7 +141,7 @@ module Tagalys
       create_response = request_tagalys('/configuration', request_body)
     end
 
-    def product_sync(link, product_count)
+    def product_sync(link, product_count, callback_url = nil)
       request_body = {
         identification: identification,
       	link: link,
