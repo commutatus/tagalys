@@ -141,7 +141,7 @@ module Tagalys
       create_response = request_tagalys('/configuration', request_body)
     end
 
-    def product_sync(link, product_count)
+    def product_sync(link, product_count, callback_url = nil)
       request_body = {
         identification: identification,
       	link: link,
@@ -149,6 +149,16 @@ module Tagalys
         callback_url: callback_url
       }
       create_response = request_tagalys('/products/sync_updates', request_body)
+    end
+
+    def bulk_product_sync(link, product_count, callback_url = nil)
+      request_body = {
+        identification: identification,
+      	link: link,
+      	updates_count: product_count,
+        callback_url: callback_url
+      }
+      create_response = request_tagalys('/products/sync_feed', request_body)
     end
 
     def request_tagalys(path, request_body)
