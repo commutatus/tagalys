@@ -108,7 +108,10 @@ module Tagalys
       search_response = request_tagalys("/recommendations/bestsellers", request_body)
     end
 
-    def get_new_arrivals
+    # recommendation_name can be one of the following
+    # new_arrivals, bestsellers, most_viewed, top_discounts_percentage,
+    # top_discounts_amount, recently_viewed
+    def get_recommendation(recommendation_name)
       request_body = {
         identification: identification,
         max_products: 16,
@@ -117,8 +120,10 @@ module Tagalys
           "results"
         ]
       }.compact
-      search_response = request_tagalys("/recommendations/new_arrivals", request_body)
+      search_response = request_tagalys("/recommendations/" + recommendation_name, request_body)
     end
+
+
 
     def create_store(currencies, fields, tag_sets, sort_options)
       request_body = {
