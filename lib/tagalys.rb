@@ -123,6 +123,21 @@ module Tagalys
       search_response = request_tagalys("/recommendations/" + recommendation_name, request_body)
     end
 
+    # merchandisable similar products, it is a add-on feature on Taglys, please contact Tagalys to enable this feature.
+    # the recommendation_id can be obtained from the Tagalys dashboard via the embed code for the merchandisable similar product feature
+    def get_merchandisable_similar_products(product_id, recommendation_id)
+      request_body = {
+        identification: identification,
+        max_products: 16,
+        product_id: product_id,
+      	request: [
+          "details",
+          "results"
+        ]
+      }.compact
+      search_response = request_tagalys("/recommendations/" + recommendation_id, request_body)
+    end
+
 
 
     def create_store(currencies, fields, tag_sets, sort_options)
@@ -172,7 +187,6 @@ module Tagalys
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri, header)
-      puts request_body.to_json
       request.body = request_body.to_json
       # Send the request
       response = http.request(request)
