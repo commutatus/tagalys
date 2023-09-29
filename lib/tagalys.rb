@@ -187,8 +187,6 @@ module Tagalys
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri, header)
-      puts uri.request_uri
-      puts request_body.to_json
       request.body = request_body.to_json
       # Send the request
       response = http.request(request)
