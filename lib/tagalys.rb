@@ -123,9 +123,9 @@ module Tagalys
       search_response = request_tagalys("/recommendations/" + recommendation_name, request_body)
     end
 
-    # merchandisable similar products, it is a add-on feature on Taglys, please contact Tagalys to enable this feature.
+    # Please contact Tagalys to enable this feature.
     # the recommendation_id can be obtained from the Tagalys dashboard via the embed code for the merchandisable similar product feature
-    def get_merchandisable_similar_products(product_id, recommendation_id)
+    def get_recommendations_for_product(product_id, recommendation_id)
       request_body = {
         identification: identification,
         max_products: 16,

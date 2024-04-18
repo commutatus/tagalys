@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'tagalys'
-  s.version     = '0.2.4'
+  s.version     = '0.2.5'
   s.date        = '2019-05-13'
   s.summary     = "Tagalys gem is written for rails."
   s.description = "This gem follows v1 of the Tagalys API endpoint."
