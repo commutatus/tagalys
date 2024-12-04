@@ -122,6 +122,21 @@ module Tagalys
       }.compact
       search_response = request_tagalys("/recommendations/" + recommendation_name, request_body)
     end
+    
+    # Please contact Tagalys to enable this feature.
+    # the recommendation_id can be obtained from the Tagalys dashboard via the embed code for the merchandisable similar product feature
+    def get_recommendations_for_product(product_id, recommendation_id)
+      request_body = {
+        identification: identification,
+        max_products: 16,
+        product_id: product_id,
+      	request: [
+          "details",
+          "results"
+        ]
+      }.compact
+      search_response = request_tagalys("/recommendations/" + recommendation_id, request_body)
+    end
 
     # merchandisable similar products, it is a add-on feature on Taglys, please contact Tagalys to enable this feature.
     # the recommendation_id can be obtained from the Tagalys dashboard via the embed code for the merchandisable similar product feature
